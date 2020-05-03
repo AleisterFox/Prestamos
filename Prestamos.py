@@ -1,14 +1,11 @@
 x=1
 while x==1:
+    print('C A L C U L A R    P R E S T A M O')
     monto=int(input('¿Cuál es el monto a prestar? '))
-    tiempo=int(input('¿A cuantos años se realizara el prestamo? '))
-    tiempo=tiempo*12
-    interes=float(input('¿Cuál es el interes mensual al que se hara el prestamo? '))
-    interes=interes/100
+    tiempo=int(input('¿A cuantos años se realizara el prestamo? '))*12
+    interes=float(input('¿Cuál es el interes mensual al que se hara el prestamo? '))/100
 
-    pago=[]
-    for i in range(1,tiempo+1):
-        pago.append(i)
+    pago=[i for i in range(1,tiempo+1)]
 
     Abono_Fijo=monto/tiempo
     saldo=monto
@@ -16,21 +13,12 @@ while x==1:
     for j in pago[1:]:
         saldo=saldo-Abono_Fijo
         Saldo_debido.append(saldo)
+               
+    Inte_Mens=[interes*x for x in Saldo_debido]
+    Pago_Mens=[Abono_Fijo+y for y in Inte_Mens]
 
-    Inte_Mens=[]
-    for x in Saldo_debido:
-        I_M=interes*x
-        Inte_Mens.append(I_M)
-
-    Pago_Mens=[]
-    for y in Inte_Mens:
-        suma=Abono_Fijo+y
-        Pago_Mens.append(suma)
-
-    for n in Pago_Mens:
-        Pago_Fijo_Mensual=sum(Pago_Mens)
-        Deuda_Total=int(Pago_Fijo_Mensual)
-    Pago_Fijo_Mensual=int(Pago_Fijo_Mensual/tiempo)
+    Deuda_Total=int(sum(Pago_Mens))
+    Pago_Fijo_Mensual=int(sum(Pago_Mens)/tiempo)
     Pago_Fijo_Quincenal=int(Pago_Fijo_Mensual/2)
 
     print('\n')
